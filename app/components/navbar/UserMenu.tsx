@@ -1,27 +1,48 @@
 "use client";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import MenuContent from "./MenuContent";
 const UserMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const timeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setIsHovered(false);
+    }, 800);
+  };
+
   return (
     <div className="relative">
       <div
-        onClick={toggleOpen}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className="flex flex-row items-center gap-3 border-[1px]  rounded-full  hover:bg-gray-100 cursor-pointer p-2 ease-in-out duration-150"
       >
         <div className="flex items-center gap-2 flex-row px-2 ">
-          <AiOutlineMenu />
           <Avatar />
         </div>
       </div>
-      {isOpen && (
-        <div className="absolute rounded-lg  border-[1px] w-[200px] bg-white overflow-hidden right-0 top-10 text-sm ">
-          <div className="flex flex-col cursor-pointer text-center">
+      {isHovered && (
+        <div
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="absolute rounded-lg  border-[1px] w-[200px] bg-white overflow-hidden right-0 top-10 text-sm "
+        >
+          <div className="flex flex-col cursor-pointer text-center ">
             <>
               <MenuContent onClick={() => {}} label="Login" />
               <MenuContent onClick={() => {}} label="Sign-Up" />

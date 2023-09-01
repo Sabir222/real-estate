@@ -12,7 +12,7 @@ const Search = () => {
         </div>
         <div className="text-sm font-semibold pl-5 pr-10 hover:bg-gray-100 text-gray-400 py-2 cursor-pointer   ease-in-out duration-150 rounded-r-lg w-full flex items-center relative justify-between  ">
           Guests?
-          <div className="p-2 ml-2 bg-green-400 rounded-full absolute text-white flex  justify-between right-1">
+          <div className="p-2 ml-2 bg-black rounded-full absolute text-white flex  justify-between right-1">
             <BiSearch size={10} />
           </div>
         </div>
