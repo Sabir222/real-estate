@@ -3,9 +3,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { useCallback, useRef, useState } from "react";
 import MenuContent from "./MenuContent";
+import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
 const UserMenu = () => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const registerModal = useRegisterModalStore();
   const timeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
 
   const handleMouseEnter = () => {
@@ -45,7 +46,12 @@ const UserMenu = () => {
           <div className="flex flex-col cursor-pointer text-center ">
             <>
               <MenuContent onClick={() => {}} label="Login" />
-              <MenuContent onClick={() => {}} label="Sign-Up" />
+              <MenuContent
+                onClick={() => {
+                  registerModal.onOpen();
+                }}
+                label="Sign-Up"
+              />
             </>
           </div>
         </div>
