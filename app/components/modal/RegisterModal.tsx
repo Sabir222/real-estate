@@ -11,6 +11,8 @@ import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
 import useLoginModalStore from "@/app/hooks/LoginModalStore";
+import { signIn } from "next-auth/react";
+import { sign } from "crypto";
 const RegisterModal = () => {
   const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
@@ -86,14 +88,18 @@ const RegisterModal = () => {
         label="Continue with Google"
         disabled={isLoading}
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <Button
         outline
         label="Continue with Github"
         disabled={isLoading}
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("github");
+        }}
       />
       <div
         className="

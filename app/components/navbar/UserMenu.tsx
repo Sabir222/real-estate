@@ -6,11 +6,13 @@ import MenuContent from "./MenuContent";
 import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
 import useLoginModalStore from "@/app/hooks/LoginModalStore";
 import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
-const UserMenu = () => {
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isHovered, setIsHovered] = useState(false);
   const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
@@ -38,11 +40,9 @@ const UserMenu = () => {
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="flex flex-row items-center gap-3 border-[1px]  rounded-full  hover:bg-gray-100 cursor-pointer p-2 ease-in-out duration-150"
+        className=" border-[1px]  rounded-full  hover:bg-gray-100 cursor-pointer  ease-in-out duration-150"
       >
-        <div className="flex items-center gap-2 flex-row px-2 ">
-          <Avatar />
-        </div>
+        <Avatar src={currentUser?.image} />
       </div>
       {isHovered && (
         <div
@@ -51,20 +51,33 @@ const UserMenu = () => {
           className="absolute rounded-lg  border-[1px] w-[200px] bg-white overflow-hidden right-0 top-10 text-sm "
         >
           <div className="flex flex-col cursor-pointer text-center ">
-            <>
-              <MenuContent
-                onClick={() => {
-                  loginModal.onOpen();
-                }}
-                label="Login"
-              />
-              <MenuContent
-                onClick={() => {
-                  registerModal.onOpen();
-                }}
-                label="Sign-Up"
-              />
-            </>
+            {currentUser ? (
+              <>
+                <MenuContent onClick={() => {}} label="My reservations" />
+                <MenuContent onClick={() => {}} label="My favorites" />
+                <MenuContent
+                  onClick={() => {
+                    signOut();
+                  }}
+                  label="LogOut"
+                />
+              </>
+            ) : (
+              <>
+                <MenuContent
+                  onClick={() => {
+                    loginModal.onOpen();
+                  }}
+                  label="Login"
+                />
+                <MenuContent
+                  onClick={() => {
+                    registerModal.onOpen();
+                  }}
+                  label="Sign-Up"
+                />
+              </>
+            )}
           </div>
         </div>
       )}

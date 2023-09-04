@@ -6,6 +6,7 @@ import RegisterModal from "./components/modal/RegisterModal";
 import ToastProvider from "./providers/ToastProvider";
 import LoginModal from "./components/modal/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import { User } from "@prisma/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
