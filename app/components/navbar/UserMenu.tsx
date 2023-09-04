@@ -4,9 +4,16 @@ import Avatar from "./Avatar";
 import { useCallback, useRef, useState } from "react";
 import MenuContent from "./MenuContent";
 import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
+import useLoginModalStore from "@/app/hooks/LoginModalStore";
+import { User } from "@prisma/client";
+
+interface UserMenuProps {
+  currentUser?: User | null;
+}
 const UserMenu = () => {
   const [isHovered, setIsHovered] = useState(false);
   const registerModal = useRegisterModalStore();
+  const loginModal = useLoginModalStore();
   const timeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
 
   const handleMouseEnter = () => {
@@ -45,7 +52,12 @@ const UserMenu = () => {
         >
           <div className="flex flex-col cursor-pointer text-center ">
             <>
-              <MenuContent onClick={() => {}} label="Login" />
+              <MenuContent
+                onClick={() => {
+                  loginModal.onOpen();
+                }}
+                label="Login"
+              />
               <MenuContent
                 onClick={() => {
                   registerModal.onOpen();

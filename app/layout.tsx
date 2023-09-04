@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import RegisterModal from "./components/modal/RegisterModal";
 import ToastProvider from "./providers/ToastProvider";
+import LoginModal from "./components/modal/LoginModal";
+import getCurrentUser from "./actions/getCurrentUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,17 +14,19 @@ export const metadata: Metadata = {
   description: "Website to browse and rent houses",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={inter.className}>
         <ToastProvider />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <RegisterModal />
+        <LoginModal />
         {children}
       </body>
     </html>
