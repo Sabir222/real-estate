@@ -6,7 +6,7 @@ import RegisterModal from "./components/modal/RegisterModal";
 import ToastProvider from "./providers/ToastProvider";
 import LoginModal from "./components/modal/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import { User } from "@prisma/client";
+import RentModal from "./components/modal/RentModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +28,7 @@ export default async function RootLayout({
         <Navbar currentUser={currentUser} />
         <RegisterModal />
         <LoginModal />
+        <RentModal />
         {children}
       </body>
     </html>

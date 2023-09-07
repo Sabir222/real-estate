@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 import Button from "../Button";
 import useLoginModalStore from "@/app/hooks/LoginModalStore";
 import { signIn } from "next-auth/react";
-import { sign } from "crypto";
 const RegisterModal = () => {
   const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
@@ -21,6 +20,7 @@ const RegisterModal = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
@@ -34,6 +34,9 @@ const RegisterModal = () => {
     try {
       await axios.post("/api/register", data);
       registerModal.onClose();
+      toast.success("Successfully registered");
+      loginModal.onOpen();
+      reset();
     } catch (error) {
       toast.error("Something went wrong");
     }

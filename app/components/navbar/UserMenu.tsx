@@ -1,13 +1,11 @@
 "use client";
-import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MenuContent from "./MenuContent";
-import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
 import useLoginModalStore from "@/app/hooks/LoginModalStore";
-import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
+import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;

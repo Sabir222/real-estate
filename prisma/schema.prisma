@@ -10,6 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model User {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
   name            String?
@@ -20,9 +25,8 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   favoriteIds     String[] @db.ObjectId
-
+  role UserRole @default(USER)
   accounts Account[]
-  listings Listing[]
   reservations Reservation[]
 }
 
@@ -51,15 +55,14 @@ model Listing {
   description String
   imageSrc String
   createdAt DateTime @default(now())
-  category  String
   roomCount Int
   bathroomCount Int
-  guestCount Int
-  locationValue String
-  userId String @db.ObjectId
+  lat Float
+  lng Float
   price Int
+  city String
+  country String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
 }
 
