@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { use, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
 import { SafeUser } from "@/app/types";
@@ -35,13 +35,28 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
 
         if (hasFavorited) {
           request = () => axios.delete(`/api/favorites/${listingId}`);
+          toast(" Deleted from favorites!", {
+            icon: "🗑️",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
         } else {
           request = () => axios.post(`/api/favorites/${listingId}`);
+          toast("Added to Favorites", {
+            icon: "👏",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
         }
 
         await request();
         router.refresh();
-        toast.success("Success");
       } catch (error) {
         toast.error("Something went wrong.");
       }

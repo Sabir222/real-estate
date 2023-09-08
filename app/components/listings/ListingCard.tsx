@@ -16,7 +16,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
   return (
     <div
       onClick={() => router.push(`/listing/${data.id}`)}
-      className="rounded-md hover:shadow-md cursor-pointer ease-in-out flex flex-col gap-3 duration-300 relative"
+      className="rounded-md hover:shadow-2xl cursor-pointer ease-in-out flex flex-col gap-3  relative duration-200"
     >
       <Image
         className=" h-[300px] w-full rounded-md object-cover"
