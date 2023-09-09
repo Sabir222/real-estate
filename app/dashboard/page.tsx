@@ -1,12 +1,12 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getListings from "../actions/getListing";
-import Button from "../components/Button";
+import getTotalUsers from "../actions/getTotalUsers";
 import Heading from "../components/Heading";
-import AddListing from "../components/dashboard/AddListing";
 import Dashboad from "../components/dashboard/Dashboad";
-// import Map from "@/app/components/Map";
 export default async function Home() {
   const currentUser = await getCurrentUser();
+  const currentLisings = await getListings();
+  const users = await getTotalUsers();
 
   if (currentUser?.role !== "ADMIN") {
     return (
@@ -25,7 +25,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Dashboad />
+      <Dashboad currentUser={currentUser} data={currentLisings} users={users}/>
     </main>
   );
 }

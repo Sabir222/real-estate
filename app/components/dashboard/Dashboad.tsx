@@ -1,7 +1,9 @@
 "use client";
-import { useState } from "react";
 import SideBar from "./sidebar/SideBar";
 import Dashcards from "./Dashcards";
+import { useState } from "react";
+import { SafeListing, SafeUser } from "@/app/types";
+import AddListing from "./AddListing";
 
 export enum CONTENT {
   USER = 0,
@@ -9,15 +11,27 @@ export enum CONTENT {
   RESERVATIONS = 2,
 }
 
-const Dashboad = () => {
+interface DashboadProps {
+  currentUser?: SafeUser | null;
+  data?: SafeListing[];
+  users?: SafeUser[];
+}
+
+const Dashboad: React.FC<DashboadProps> = ({ currentUser, data, users }) => {
   const [section, setSection] = useState(CONTENT.USER);
+  console.log(users);
 
   if (section === CONTENT.HOUSES) {
     return (
       <div className="flex">
         <SideBar setSection={setSection} />
-        <div className=" h-screen w-full p-4">
-          <Dashcards email="HOUSES" username="Sabir Koutabi" role="admin" />
+        <div className=" h-screen w-full p-4 flex flex-col gap-4">
+          <div className="self-end w-[150px]">
+            <AddListing />
+          </div>
+          {data?.map((house) => {
+            return <Dashcards key={house.id} Delete update />;
+          })}
         </div>
       </div>
     );
@@ -28,11 +42,7 @@ const Dashboad = () => {
       <div className="flex">
         <SideBar setSection={setSection} />
         <div className=" h-screen w-full p-4">
-          <Dashcards
-            email="RESERVATIONS"
-            username="XXXXXXXXXXXXX"
-            role="admin"
-          />
+          <Dashcards email="email" username="XXXXXXXXXXXXX" />
         </div>
       </div>
     );
@@ -40,12 +50,22 @@ const Dashboad = () => {
   return (
     <div className="flex">
       <SideBar setSection={setSection} />
-      <div className=" h-screen w-full p-4">
-        <Dashcards
-          email="mrsabir4@gmail.com"
-          username="Sabir Koutabi"
-          role="admin"
-        />
+      <div className=" h-screen w-full p-4 flex flex-col gap-4">
+        {users?.map((user) => {
+          return (
+            <>
+              <Dashcards
+                key={user.id}
+                email={`${user.email}`}
+                username={`${user.name}`}
+                role={`${user.role}`}
+                update
+                Delete
+                imageSrc={`${user.image}`}
+              />
+            </>
+          );
+        })}
       </div>
     </div>
   );
