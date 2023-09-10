@@ -34,7 +34,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, currentUser }) => {
         <ListingSkeletons />
       ) : (
         <div
-          onClick={() => router.push(`/listing/${data.id}`)}
+          onClick={() => router.push(`/listings/${data.id}`)}
           className="rounded-md hover:shadow-2xl cursor-pointer ease-in-out flex flex-col gap-3  relative duration-200"
         >
           <Image
