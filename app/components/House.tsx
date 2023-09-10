@@ -9,6 +9,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import ListingReservation from "./listings/ListingReservation";
 import { Range } from "react-date-range";
+import Container from "./Container";
+import { MdBathroom, MdBedroomParent } from "react-icons/md";
+import { Image } from "@nextui-org/react";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -62,7 +65,7 @@ export const House: React.FC<HouseProps> = ({
       .then(() => {
         toast.success("Success");
         setDateRange(initialDateRange);
-        // redirect to myreservations
+        router.push("/reservations");
       })
       .catch(() => {
         toast.error("Error");
@@ -70,7 +73,7 @@ export const House: React.FC<HouseProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [loginModal, totalPrice, dateRange, listing?.id, currentUser]);
+  }, [loginModal, totalPrice, dateRange, listing?.id, currentUser, router]);
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
@@ -85,16 +88,48 @@ export const House: React.FC<HouseProps> = ({
   }, [dateRange, listing?.price]);
 
   return (
-    <main className="mt-44">
-      <ListingReservation
-        price={listing?.price}
-        totalPrice={totalPrice}
-        onChangeDate={(value) => setDateRange(value)}
-        dateRange={dateRange}
-        onSubmit={onCreateReservation}
-        disabled={isLoading}
-        disabledDates={disabledDates}
-      />
-    </main>
+    <Container>
+      <div className="lg:px-[100px]  2xl:px-[230px]">
+        <div className="w-full pb-10">
+          <Image
+            className="w-full z-0"
+            height={100}
+            alt="NextUI hero Image"
+            src={`${listing?.imageSrc}`}
+          />
+        </div>
+        <div className="flex flex-col  md:flex-row  gap-6 pb-10">
+          <div className="w-full  p-4">
+            <p className="text-xl font-semibold">{listing?.title}</p>
+            <p className="text-lg text-gray-400 pb-2">
+              {listing?.country},{listing?.city}
+            </p>
+            <hr />
+            <p className="pt-7">{listing?.description}</p>
+
+            <div className="flex flex-col xl:flex-row gap-4 mt-6">
+              <div className="w-full flex items-center gap-3 text-2xl">
+                <MdBedroomParent size={50} />
+                {listing?.roomCount} Rooms
+              </div>
+              <div className="w-full flex items-center gap-3 text-2xl">
+                <MdBathroom size={50} /> {listing?.bathroomCount} Bathrooms
+              </div>
+            </div>
+          </div>
+          <div className="w-full">
+            <ListingReservation
+              price={listing?.price}
+              totalPrice={totalPrice}
+              onChangeDate={(value) => setDateRange(value)}
+              dateRange={dateRange}
+              onSubmit={onCreateReservation}
+              disabled={isLoading}
+              disabledDates={disabledDates}
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
   );
 };

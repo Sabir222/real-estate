@@ -1,11 +1,12 @@
 "use client";
 import Avatar from "./Avatar";
-import { useRef, useState } from "react";
+import { use, useRef, useState } from "react";
 import MenuContent from "./MenuContent";
 import useLoginModalStore from "@/app/hooks/LoginModalStore";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import useRegisterModalStore from "@/app/hooks/RegisterModalStore";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -15,7 +16,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
   const timeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null);
-
+  const router = useRouter();
   const handleMouseEnter = () => {
     if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
@@ -32,7 +33,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       setIsHovered(false);
     }, 800);
   };
-
+  const handleRegistrationClick = () => {
+    router.push(`/reservations`);
+    setIsHovered(false);
+  };
+  const handleFavoritesClick = () => {
+    router.push(`/favorites`);
+    setIsHovered(false);
+  };
   return (
     <div className="relative">
       <div
@@ -51,8 +59,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer text-center ">
             {currentUser ? (
               <>
-                <MenuContent onClick={() => {}} label="My reservations" />
-                <MenuContent onClick={() => {}} label="My favorites" />
+                <MenuContent
+                  onClick={handleRegistrationClick}
+                  label="My reservations"
+                />
+                <MenuContent onClick={handleFavoritesClick} label="My favorites" />
                 <MenuContent
                   onClick={() => {
                     signOut();
