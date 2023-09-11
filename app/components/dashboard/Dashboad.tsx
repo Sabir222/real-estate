@@ -2,8 +2,11 @@
 import SideBar from "./sidebar/SideBar";
 import Dashcards from "./Dashcards";
 import { useState } from "react";
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import AddListing from "./AddListing";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Heading from "../Heading";
 
 export enum CONTENT {
   USER = 0,
@@ -15,11 +18,17 @@ interface DashboadProps {
   currentUser?: SafeUser | null;
   data?: SafeListing[];
   users?: SafeUser[];
+  reservations?: SafeReservation[];
 }
 
-const Dashboad: React.FC<DashboadProps> = ({ currentUser, data, users }) => {
+const Dashboad: React.FC<DashboadProps> = ({
+  currentUser,
+  data,
+  users,
+  reservations,
+}) => {
   const [section, setSection] = useState(CONTENT.USER);
-  console.log(users);
+  console.log("reservations", reservations);
 
   if (section === CONTENT.HOUSES) {
     return (
@@ -29,8 +38,26 @@ const Dashboad: React.FC<DashboadProps> = ({ currentUser, data, users }) => {
           <div className="self-end w-[150px]">
             <AddListing />
           </div>
+          {data?.length === 0 && (
+            <div>
+              <Heading
+                title="No Houses available"
+                subtitle="add Houses"
+                center
+              />
+            </div>
+          )}
           {data?.map((house) => {
-            return <Dashcards key={house.id} Delete update />;
+            return (
+              <Dashcards
+                key={house.id}
+                Delete
+                houseLocation={house.city}
+                houseName={house.title}
+                houseImg={house.imageSrc}
+                houseId={house.id}
+              />
+            );
           })}
         </div>
       </div>
@@ -39,10 +66,41 @@ const Dashboad: React.FC<DashboadProps> = ({ currentUser, data, users }) => {
 
   if (section === CONTENT.RESERVATIONS) {
     return (
-      <div className="flex">
+      <div className="flex ">
         <SideBar setSection={setSection} />
-        <div className=" h-screen w-full p-4">
-          <Dashcards email="email" username="XXXXXXXXXXXXX" />
+        <div className=" h-screen w-full p-4 flex flex-col gap-4">
+          <div>
+            <Heading
+              title="No reservations"
+              subtitle="Things aren't looking good cheif"
+              center
+            />
+          </div>
+          {reservations?.map((reservation) => {
+            const startDate = new Date(reservation.startDate);
+            const endDate = new Date(reservation.endDate);
+
+            const formattedStartDate = `${
+              startDate.getMonth() + 1
+            }/${startDate.getDate()}/${startDate.getFullYear()}`;
+            const formattedEndDate = `${
+              endDate.getMonth() + 1
+            }/${endDate.getDate()}/${endDate.getFullYear()}`;
+            const reservationAuthor = users?.find(
+              (user) => user.id === reservation.userId
+            );
+            return (
+              <Dashcards
+                key={reservation.id}
+                houseLocation={`${reservation.listing.city}`}
+                houseName={`${reservation.listing.title}`}
+                startDate={formattedStartDate}
+                endDate={formattedEndDate}
+                reservation
+                reservationAuthor={reservationAuthor}
+              />
+            );
+          })}
         </div>
       </div>
     );
@@ -60,8 +118,8 @@ const Dashboad: React.FC<DashboadProps> = ({ currentUser, data, users }) => {
                 username={`${user.name}`}
                 role={`${user.role}`}
                 update
-                Delete
                 imageSrc={`${user.image}`}
+                avatar
               />
             </>
           );

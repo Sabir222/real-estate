@@ -1,7 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 import Heading from "../components/Heading";
-import Container from "@/app/components/Container";
 import Myreservations from "../components/Myreservations";
 
 const page = async () => {

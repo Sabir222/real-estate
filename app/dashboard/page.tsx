@@ -1,5 +1,6 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getListings from "../actions/getListing";
+import getTotalReservations from "../actions/getTotalReservations";
 import getTotalUsers from "../actions/getTotalUsers";
 import Heading from "../components/Heading";
 import Dashboad from "../components/dashboard/Dashboad";
@@ -7,6 +8,7 @@ export default async function Home() {
   const currentUser = await getCurrentUser();
   const currentLisings = await getListings();
   const users = await getTotalUsers();
+  const reservations = await getTotalReservations();
 
   if (currentUser?.role !== "ADMIN") {
     return (
@@ -25,7 +27,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Dashboad currentUser={currentUser} data={currentLisings} users={users}/>
+      <Dashboad reservations={reservations} currentUser={currentUser} data={currentLisings} users={users} />
     </main>
   );
 }
