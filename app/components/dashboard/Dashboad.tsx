@@ -4,8 +4,6 @@ import Dashcards from "./Dashcards";
 import { useState } from "react";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import AddListing from "./AddListing";
-import axios from "axios";
-import toast from "react-hot-toast";
 import Heading from "../Heading";
 
 export enum CONTENT {
@@ -34,7 +32,11 @@ const Dashboad: React.FC<DashboadProps> = ({
     return (
       <div className="flex">
         <SideBar setSection={setSection} />
-        <div className=" h-screen w-full p-4 flex flex-col gap-4">
+        <div>
+          <div className=" w-[70px] sm:w-[150px] md:w-[250px] flex"></div>
+        </div>
+
+        <div className=" w-full p-4 flex flex-col gap-4">
           <div className="self-end w-[150px]">
             <AddListing />
           </div>
@@ -68,14 +70,20 @@ const Dashboad: React.FC<DashboadProps> = ({
     return (
       <div className="flex ">
         <SideBar setSection={setSection} />
-        <div className=" h-screen w-full p-4 flex flex-col gap-4">
-          <div>
-            <Heading
-              title="No reservations"
-              subtitle="Things aren't looking good cheif"
-              center
-            />
-          </div>
+        <div>
+          <div className=" w-[70px] sm:w-[150px] md:w-[250px] flex"></div>
+        </div>
+        <div className="  p-4 flex-grow flex flex-col gap-4">
+          {reservations?.length === 0 && (
+            <div>
+              <Heading
+                title="No reservations"
+                subtitle="Things aren't looking good cheif"
+                center
+              />
+            </div>
+          )}
+
           {reservations?.map((reservation) => {
             const startDate = new Date(reservation.startDate);
             const endDate = new Date(reservation.endDate);
@@ -108,6 +116,9 @@ const Dashboad: React.FC<DashboadProps> = ({
   return (
     <div className="flex">
       <SideBar setSection={setSection} />
+      <div>
+        <div className=" w-[70px] sm:w-[150px] md:w-[250px] flex"></div>
+      </div>
       <div className=" h-screen w-full p-4 flex flex-col gap-4">
         {users?.map((user) => {
           return (

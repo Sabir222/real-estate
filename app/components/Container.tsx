@@ -16,6 +16,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
         px-4
         pt-44
         md:pt-28
+        pb-20
       "
     >
       {children}

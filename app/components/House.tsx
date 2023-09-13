@@ -12,6 +12,7 @@ import { Range } from "react-date-range";
 import Container from "./Container";
 import { MdBathroom, MdBedroomParent } from "react-icons/md";
 import { Image } from "@nextui-org/react";
+import Map from "@/app/components/Map";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -129,6 +130,7 @@ export const House: React.FC<HouseProps> = ({
             />
           </div>
         </div>
+        <Map listings={[listing]} />
       </div>
     </Container>
   );

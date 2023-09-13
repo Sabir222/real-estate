@@ -20,7 +20,7 @@ const page = async ({ params }: { params: IParams }) => {
         <Container>
           <Heading
             center
-            title="Ops Error fond!"
+            title="Ops Error found!"
             subtitle="Listing not found"
           />
         </Container>
@@ -28,11 +28,13 @@ const page = async ({ params }: { params: IParams }) => {
     );
   }
   return (
-    <House
-      listing={listing}
-      currentUser={currentUser}
-      reservations={reservations}
-    />
+    <>
+      <House
+        listing={listing}
+        currentUser={currentUser}
+        reservations={reservations}
+      />
+    </>
   );
 };
 

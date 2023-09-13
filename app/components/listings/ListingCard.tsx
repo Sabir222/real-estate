@@ -48,7 +48,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
       ) : (
         <div
           onClick={() => router.push(`/listings/${data.id}`)}
-          className="rounded-md hover:shadow-2xl cursor-pointer ease-in-out flex flex-col gap-3  relative duration-200"
+          className="rounded-2xl hover:shadow-2xl shadow cursor-pointer ease-in-out flex flex-col gap-3  relative duration-200"
         >
           <Image
             className=" h-[300px] w-full rounded-md object-cover"
@@ -62,7 +62,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               {capitalizeFirstLetter(data.city)},{" "}
               {capitalizeFirstLetter(data.country)}
             </div>
-            <div className="">{data.title}</div>
+            <div className=" truncate hover:text-clip ">{data.title}</div>
             <div className="">
               <span className="font-semibold">${data.price}</span>/ Per night
             </div>
