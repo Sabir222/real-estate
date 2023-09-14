@@ -2,7 +2,7 @@
 import Button from "@/app/components/Button";
 import Avatar from "@/app/components/navbar/Avatar";
 import { SafeUser } from "@/app/types";
-import { Image } from "@nextui-org/react";
+import { Image, user } from "@nextui-org/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
@@ -25,6 +25,7 @@ interface DashcardsProps {
   reservation?: boolean;
   reservationAuthor?: SafeUser;
   houseId?: string;
+  userId?: string;
 }
 const Dashcards: React.FC<DashcardsProps> = ({
   email,
@@ -43,6 +44,7 @@ const Dashcards: React.FC<DashcardsProps> = ({
   endDate,
   reservationAuthor,
   houseId,
+  userId,
 }) => {
   const router = useRouter();
 
@@ -52,6 +54,22 @@ const Dashcards: React.FC<DashcardsProps> = ({
         .delete(`/api/listings/${id}`)
         .then(() => {
           toast.success("House deleted");
+          router.refresh();
+        })
+        .catch(() => {
+          toast.error("Something went wrong");
+        });
+    },
+    [router]
+  );
+  const Admin = useCallback(
+    (id: string) => {
+      console.log(id);
+
+      axios
+        .post("/api/admin",  {id} )
+        .then(() => {
+          toast.success("Success");
           router.refresh();
         })
         .catch(() => {
@@ -108,7 +126,7 @@ const Dashcards: React.FC<DashcardsProps> = ({
         )}
         {update && (
           <>
-            <Button label="Make Admin" onClick={() => {}} />
+            <Button label="Make Admin" onClick={() => Admin(userId || "")} />
           </>
         )}
         {reservationAuthor && (

@@ -134,6 +134,7 @@ const Dashboad: React.FC<DashboadProps> = ({
                 update
                 imageSrc={`${user.image}`}
                 avatar
+                userId={`${user.id}`}
               />
             </>
           );
