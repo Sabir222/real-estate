@@ -27,6 +27,9 @@ const Dashboad: React.FC<DashboadProps> = ({
 }) => {
   const [section, setSection] = useState(CONTENT.USER);
   console.log("reservations", reservations);
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
   if (section === CONTENT.HOUSES) {
     return (
@@ -54,8 +57,8 @@ const Dashboad: React.FC<DashboadProps> = ({
               <Dashcards
                 key={house.id}
                 Delete
-                houseLocation={house.city}
-                houseName={house.title}
+                houseLocation={capitalizeFirstLetter(house.city)}
+                houseName={capitalizeFirstLetter(house.title)}
                 houseImg={house.imageSrc}
                 houseId={house.id}
               />

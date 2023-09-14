@@ -28,13 +28,11 @@ const page = async ({ params }: { params: IParams }) => {
     );
   }
   return (
-    <>
-      <House
-        listing={listing}
-        currentUser={currentUser}
-        reservations={reservations}
-      />
-    </>
+    <House
+      listing={listing}
+      currentUser={currentUser}
+      reservations={reservations}
+    />
   );
 };
 
