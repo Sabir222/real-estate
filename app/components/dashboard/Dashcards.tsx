@@ -67,7 +67,7 @@ const Dashcards: React.FC<DashcardsProps> = ({
       console.log(id);
 
       axios
-        .post("/api/admin",  {id} )
+        .post("/api/admin", { id })
         .then(() => {
           toast.success("Success");
           router.refresh();
@@ -126,7 +126,10 @@ const Dashcards: React.FC<DashcardsProps> = ({
         )}
         {update && (
           <>
-            <Button label="Make Admin" onClick={() => Admin(userId || "")} />
+            <Button
+              label={`${role === 'ADMIN' ? "Remove Admin" : "Make Admin"}`}
+              onClick={() => Admin(userId || "")}
+            />
           </>
         )}
         {reservationAuthor && (
