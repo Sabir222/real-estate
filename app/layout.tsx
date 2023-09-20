@@ -14,9 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Estate",
   description: "Website to browse and rent houses",
-  icons:{
-    icon:'/logo.png'
-  }
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 export default async function RootLayout({
