@@ -1,12 +1,16 @@
 "use client";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import Logo from "../Logo";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  if (pathname === "/dashboard") {
+    return null;
+  }
 
   return (
-    <main>
+    <footer className="mt-auto">
       <div className="bg-[#EEEEEE] ">
         <div className="max-w-[2520px] mx-auto  xl:px-20 md:px-10 sm:px-2 px-4 py-4 ">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between items-start  h-40">
@@ -14,7 +18,7 @@ const Footer = () => {
               &#169; {currentYear} All Rights Reserved.
             </div>
             <div className="order-2 ">
-              <Logo  />
+              <Logo />
             </div>
             <div className="flex gap-5 items-center order-1">
               <button>
@@ -36,7 +40,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </main>
+    </footer>
   );
 };
 

@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const pathname = usePathname();
   if (pathname === "/dashboard") {
     return null;
-  }
+   }
   return (
     <div className="fixed w-full  bg-white z-10 border-b h-[150px] md:h-[80px] ">
       <div className="max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4 py-4 flex flex-row gap-3 md:gap-20 justify-between items-center ">
