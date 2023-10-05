@@ -33,7 +33,7 @@ const page = async () => {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Myreservations currentUser={currentUser} reservations={reservations} />
     </div>
   );
