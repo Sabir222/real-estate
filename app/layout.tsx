@@ -8,6 +8,7 @@ import LoginModal from "./components/modal/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import RentModal from "./components/modal/RentModal";
 import { Providers } from "./Providers";
+import Footer from "./components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <LoginModal />
           <RentModal />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
