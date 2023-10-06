@@ -14,12 +14,9 @@ Welcome to the Real Estate Website project! This web application allows users to
 
 ## Technologies Used
 
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
 - TypeScript
-- Next.js
 - Tailwind CSS
 - MongoDB
 - Prisma
@@ -66,8 +63,6 @@ If you'd like to contribute to this project, please follow these steps:
 # Contact
 
 For any questions or inquiries, please contact me at mrsabir4@gmail.com.
-
-
 
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
