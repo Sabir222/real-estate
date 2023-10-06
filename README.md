@@ -1,34 +1,75 @@
-WEBSITE LINK | https://real-estate-phi-three.vercel.app/
+# Real Estate Website
 
-## Getting Started
+Welcome to the Real Estate Website project! This web application allows users to browse, reserve, and add houses to their favorites. Admin users have the additional capability to manage properties and user roles. The project is built using TypeScript, Next.js, Tailwind CSS, MongoDB, Prisma, and integrates OAuth authentication with Google and GitHub.
 
-First, run the development server:
+## Features
 
-```bash
+- User Registration and Authentication with OAuth (Google and GitHub)
+- User Roles: Admins can manage other user roles
+- Property Management: Admins can add, remove, and update house listings
+- Cloudinary Integration: Store and manage property images
+- Property Reservations: Users can make reservations for properties
+- Favorites: Users can add properties to their favorites
+- Google Maps Integration: Browse properties using Google Maps
+
+## Technologies Used
+
+
+* [![Next][Next.js]][Next-url]
+* [![React][React.js]][React-url]
+
+- TypeScript
+- Next.js
+- Tailwind CSS
+- MongoDB
+- Prisma
+- Cloudinary
+- OAuth (Google and GitHub)
+
+## Installation
+
+1. Clone the repository:
+
+git clone <https://github.com/Sabir222/real-estate.git>
+
+2. Install dependencies:
+
+cd real-estate
+npm install
+
+3. Set up environment variables:
+
+Create a .env file and add your environment variables for MongoDB, Cloudinary, and nextAuth credentials(google,github),google maps.
+
+4. Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Register and log in with your Google or GitHub account.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Browse properties on the website.
+- Add properties to your favorites.
+- Make reservations for properties.
+- Admins can manage properties and user roles in the admin panel.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+If you'd like to contribute to this project, please follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Fork the repository.
+- Create a new branch for your feature or bug fix.
+- Make your changes and test them thoroughly.
+- Commit your changes and create a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Contact
 
-## Deploy on Vercel
+For any questions or inquiries, please contact me at mrsabir4@gmail.com.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
