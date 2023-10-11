@@ -23,8 +23,6 @@ Welcome to the Real Estate Website project! This web application allows users to
 - Cloudinary
 - OAuth (Google and GitHub)
 
-
-
 ## Installation
 
 1. Clone the repository:
