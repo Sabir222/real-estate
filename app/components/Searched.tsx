@@ -17,11 +17,12 @@ const Searched: React.FC<SearchProps> = ({ currentUser }) => {
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
   const encodedSearchQuery = encodeURI(searchQuery || "");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`/api/search?q=${encodedSearchQuery}`);
         setData(response.data);
         setLoading(false);
