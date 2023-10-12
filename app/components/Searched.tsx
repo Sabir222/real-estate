@@ -6,6 +6,7 @@ import Container from "./Container";
 import ListingCard from "./listings/ListingCard";
 import { SafeUser, SafeListing } from "../types";
 import Heading from "./Heading";
+import { Spinner } from "@nextui-org/react";
 
 interface SearchProps {
   currentUser?: SafeUser | null;
@@ -16,23 +17,35 @@ const Searched: React.FC<SearchProps> = ({ currentUser }) => {
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
   const encodedSearchQuery = encodeURI(searchQuery || "");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`/api/search?q=${encodedSearchQuery}`);
         setData(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
+    setData(null);
 
     if (encodedSearchQuery) {
       fetchData();
     }
   }, [encodedSearchQuery]);
 
-  if (!data || data.length === 0) {
+  if (loading) {
+    return (
+      <div>
+        <div className="flex justify-center items-center min-h-screen">
+          <Spinner color="default" size="lg" />
+        </div>
+      </div>
+    );
+  } else if (!data || data.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <Heading

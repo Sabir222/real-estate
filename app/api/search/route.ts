@@ -19,30 +19,9 @@ export async function GET(req: NextRequest) {
       ...listing,
       createdAt: listing.createdAt.toString(),
     }));
-    
-    return Response.json( formattedListings );
+
+    return Response.json(formattedListings);
   } catch (error: any) {
     throw new Error(error);
   }
 }
-
-/* try {
-    const listing = await prisma.listing.findMany({
-      where: {
-        city: q,
-      },
-    });
-
-    if (!listing) {
-      return null;
-    }
-
-    const formattedListings = listing.map((listing) => ({
-      ...listing,
-      createdAt: listing.createdAt.toString(),
-    }));
-
-    return formattedListings;
-  } catch (error: any) {
-    throw new Error(error);
-  } */
