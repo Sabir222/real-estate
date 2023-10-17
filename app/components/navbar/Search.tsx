@@ -15,6 +15,7 @@ const Search = () => {
     router.push(`/search?q=${encodedSearchQuery}`);
   };
   //
+  //
   return (
     <form onSubmit={onSearch}>
       <div className="flex justify-center items-center relative">
