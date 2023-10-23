@@ -46,6 +46,8 @@ npm run dev
 
 Register and log in with your Google or GitHub account.
 
+or Use admin account : email: admin@admin.com pw:admin
+
 - Browse properties on the website.
 - Add properties to your favorites.
 - Make reservations for properties.
