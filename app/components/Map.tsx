@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 interface MapProps {
   listings: SafeListing[];
 }
-
+//
 const Map: React.FC<MapProps> = ({ listings }) => {
   const centerMorocco = useMemo(
     () => ({ lat: 31.501120166432887, lng: -9.75375476694082 }),
