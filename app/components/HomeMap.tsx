@@ -8,7 +8,7 @@ interface MapProps {
   listings: SafeListing[];
 }
 const HomeMap: React.FC<MapProps> = ({ listings }) => {
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(true);
 
   return (
     <div className="flex flex-col pb-2 gap-3">

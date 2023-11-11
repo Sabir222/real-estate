@@ -26,7 +26,7 @@ const Map: React.FC<MapProps> = ({ listings }) => {
   const [selected, setSelected] = useState<number | null>(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.GOOGLE_API_KEY || "",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   });
   if (!isLoaded) {
     return (
