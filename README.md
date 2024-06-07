@@ -64,7 +64,7 @@ If you'd like to contribute to this project, please follow these steps:
 - Make your changes and test them thoroughly.
 - Commit your changes and create a pull request.
 
-# Contact
+# Contact.
 
 For any questions or inquiries, please contact me at mrsabir4@gmail.com.
 
