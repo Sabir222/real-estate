@@ -31,7 +31,7 @@ git clone <https://github.com/Sabir222/real-estate.git>
 
 2. Install dependencies:
 
-cd real-estate
+- cd real-estate
 ```
 npm install
 ```
