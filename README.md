@@ -1,4 +1,4 @@
-# Real Estate Website.
+# Real Estate Website..
 
 Welcome to the Real Estate Website project! This web application allows users to browse, reserve, and add houses to their favorites. Admin users have the additional capability to manage properties and user roles. The project is built using TypeScript, Next.js, Tailwind CSS, MongoDB, Prisma, and integrates OAuth authentication with Google and GitHub.
 
